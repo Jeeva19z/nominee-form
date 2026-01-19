@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manager Feedback Form</title>
+
+
+    <link href="https://www.resulticks.com/images/favicon.png" rel="shortcut icon" />
+  <!-- This page's CSS -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+        *{padding:0;margin:0;box-sizing:border-box}
+    @font-face{font-family:'Poppins';src:url('/assets/fonts/Poppins/Poppins-Regular.ttf') format('truetype');font-weight:400;font-style:normal}
+    @font-face{font-family:'Poppins';src:url('/assets/fonts/Poppins/Poppins-Bold.ttf') format('truetype');font-weight:700;font-style:normal}
+    body{font-family:'Poppins',sans-serif;background:#F5F7FD;padding:20px}
+    body { font-family: 'Poppins', sans-serif; }
+    .section-space-5{padding:5px 10px}
+    .section-space-20{padding:20px 10px}
+    .section-space-40{padding:40px 10px}
+    .container{max-width:1150px;margin:auto}
+    h2{color:#0000ff;font-size:32px}
+    .card{background:#fff;padding:20px;border-radius:12px;box-shadow:0px 2px 6px rgba(0,0,0,0.1);margin-bottom:20px}
+    .managers{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px}
+    .criteria-table{width:100%;border-collapse:collapse}
+    .criteria-table th,.criteria-table td{font-size:.8rem;padding:12px;border-bottom:1px solid #e5e5e5;vertical-align:middle}
+    .criteria-table th{background:#f0f2f8}
+    .rating{display:flex;justify-content:center;gap:4px;flex-wrap:wrap}
+    .number{font-size:10px;padding:4px 7px;border:1px solid #ccc;border-radius:6px;cursor:pointer;background:#fff;transition:.2s}
+    .number.selected{background:#0000ff;color:#fff;border-color:#0000ff}
+    .unique-text{color:#0000ff}
+    textarea{width:100%;padding:8px;border-radius:8px;border:1px solid #E5ECFF;margin-top:5px;background-color:#F5F7FD;resize:vertical;min-height:100px}
+    .toggle-container{margin-bottom:12px}
+    .toggle-container label{font-weight:500}
+    .info-text{font-size:12px;color:gray}
+    .submit-btn{background:#0000ff;border:none;padding:10px 20px;font-size:16px;border-radius:8px;cursor:pointer;color:#fff;font-weight:600;margin-top:35px;transition:.3s;margin-bottom:20px}
+    .submit-btn:hover{background:#042a9c}
+    .logo-card{width:330px}
+    .logo{width:100%}
+    input[type="checkbox"]{width:14px;height:14px;border:2px solid blue;border-radius:4px;appearance:none;cursor:pointer;outline:none;position:relative;top:2px;margin-right:5px}
+    .managers>label{font-size:13px}
+    input[type="checkbox"]:checked{background-color:blue;border-color:blue}
+    input[type="checkbox"]:checked::after{content:"";position:absolute;top:-2px;left:2px;font-size:11px;color:white}
+    input::placeholder,textarea::placeholder{color:#a5a4a4!important;opacity:1!important}
+    input:focus,textarea:focus{border:1px solid #0000ff;outline:none}
+    .f-14{font-size:14px}
+    .switch{position:relative;display:inline-block;width:46px;height:24px}
+    .switch input{opacity:0;width:0;height:0}
+    .slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:#ccc;transition:.3s;border-radius:24px}
+    .slider:before{position:absolute;content:"";height:18px;width:18px;left:3px;bottom:3px;background:white;transition:.3s;border-radius:50%}
+    input:checked + .slider{background:#0000ff}
+    input:checked + .slider:before{transform:translateX(22px)}
+    .inner-toggle{display:flex;align-items:center;justify-content:space-between}
+    .clr-black{color:#000}
+    .mb5{margin-bottom:20px}
+    input#username{width:100%;padding:10px 0;padding-left:10px;border:1px solid #E5ECFF;background-color:#F5F7FD}
+    .toggle-form{display:none}
+    .success{color:green;font-weight:300;margin-top:12px;display:none}
+    .error{color:#b00020;font-weight:300;margin-top:12px;display:none}
+    /* add below your existing styles */
+.rating.missing {
+  /* outline: 2px solid #e11d48;  */
+  border-radius: 8px;
+  padding: 2px;
+   /* border: 2px solid #e11d48; */
+   box-sizing: border-box;
+}
+input:focus, textarea:focus {
+    border: 1px solid #0000ff;
+    outline: none;
+}
+/* textarea.missing {
+  border: 2px solid #e11d48;
+  background-color: #ffe6e6;
+} */
+/* Loader overlay */
+#loaderOverlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.35);
+  display: none; align-items: center; justify-content: center;
+  z-index: 9999;
+}
+.loader {
+  width: 56px; height: 56px; border-radius: 50%;
+  border: 4px solid #fff; border-top-color: #0000ff;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Thanks modal */
+#thanksModal {
+  position: fixed; inset: 0; display: none; align-items: center; justify-content: center;
+  background: rgba(0,0,0,.35); z-index: 10000;
+}
+.modal-card {
+  background: #fff; width: min(92vw, 440px);
+  border-radius: 12px; padding: 22px; box-shadow: 0 10px 30px rgba(0,0,0,.15);
+  text-align: center;
+}
+.modal-card h3 { font-size: 20px; margin-bottom: 10px; color: #000; }
+.modal-card p { font-size: 14px; color: #555; margin-bottom: 18px; }
+.modal-actions { display: flex; gap: 10px; justify-content: center; }
+.modal-btn {
+  background:#0000ff; color:#fff; border:none; padding:10px 16px; border-radius:8px; cursor:pointer; font-weight:600;
+}
+.modal-btn.secondary {
+  background:#eef2ff; color:#001a7d;
+}
+
+#toast{display:none; position:fixed; bottom:20px; right:20px; background:#f44336; color:white; padding:10px; border-radius:5px;}
+
+
+  .chip-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    max-width: 100%;
+  }
+
+  .chip {
+    padding: 10px 20px;
+    border-radius: 25px;
+    background-color: #e0e0e0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+    font-weight: 500;
+  }
+
+  /* Hover effect */
+  .chip:hover {
+    background-color: #4e8cff;
+    color: #fff;
+    transform: scale(1.05);
+  }
+
+  /* Selected state */
+  .chip.selected {
+    background-color: #1a73e8;
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  }
+  #manager-card{
+    display: none;
+  }
+
+
+  .error-box {
+  display: none;
+  /* border: 1px solid #e5484d; */
+  /* background: #ffe9ea; */
+  color: #8f1d22;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin: 10px 0 16px;
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+.error-box ul { margin: 6px 0 0 18px; }
+.error-box.show { display: block; }
+
+.missing {
+  /* outline: 2px solid #e5484d !important; */
+  outline-offset: 2px;
+  border-radius: 6px;
+  background: #fff7f8;
+  
+    border: 2px solid #e11d48;
+    background-color: #ffe6e6;
+}
+input#employeeId {
+    width: 100%;
+    padding: 10px 0;
+    padding-left: 10px;
+    border: 1px solid #E5ECFF;
+    background-color: #F5F7FD;
+}
+
+#loaderOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: none; /* Hide by default */
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 2s linear infinite;
+}
+
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media screen and (max-width:768px) {
+  div#reviews-section {
+    overflow-x:scroll;
+    
+}
+td{
+    min-width:200px;
+}
+  
+}
+#loaderOverlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.35);
+  display: none; align-items: center; justify-content: center;
+  z-index: 9999;
+}
+.lnk{
+  text-decoration: underline;
+  font-weight: 700;
+      font-style: italic;
+      font-size: 16px;
+      margin-bottom: 20px;
+      color: gray;
+      padding-left: 5px;
+   
+      
+}
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
+.lnk>span{
+  color: #0000ff;
+  
+}
+td{
+  border-bottom: none !important
+  ;
+}
+
+#departmentSelect, #managerSelect{
+  width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+}
+.tqres{
+  color: rgb(2, 129, 2);
+  display: none;
+}
+.spinner {
+  border: 4px solid #f3f3f3; /* Light grey background */
+  border-top: 4px solid #3498db; /* Blue spinning part */
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  margin-left: 10px; /* space after button */
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+select#departmentSelect , select#managerSelect {
+ appearance:none;
+ -webkit-appearance:none;
+ -moz-appearance:none;
+ background:url("data:image/svg+xml,%3Csvg fill='black' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") no-repeat;
+ background-position:right 15px center;
+ background-size:25px !important;
+ padding:15px;
+}
+
+.departmentlb{
+  padding: 10px 0px;
+
+}
+select#managerSelect:focus , select#departmentSelect:focus {
+    border: 1px solid #0000ff;
+    outline: none;
+}
+
+select#departmentSelect:focus {
+    border: 1px solid #0000ff;
+    outline: none;
+}
+.username{
+  margin-top: 10px;
+}
+h3.section-space-5.mb-center-sm {
+    padding-left: 2px;
+}
+.ps-0{
+  padding-left: 0px;
+}
+
+.ps-2{
+  padding-left: 2px;
+}
+@media screen and (max-width:768px) {
+  .mb-center-sm{
+    text-align: center;
+  }
+  
+}
+
+  </style>
+</head>
+<body>
+  <!-- Loading Overlay -->
+  <div id="loaderOverlay" aria-hidden="true">
+    <div class="loader" aria-label="Submitting…"></div>
+  </div>
+
+  <!-- Thanks Modal -->
+  <div id="thanksModal" role="dialog" aria-modal="true" aria-labelledby="thanksTitle" aria-hidden="true">
+    <div class="modal-card">
+      <h3 id="thanksTitle">Thank you for your review.</h3>
+      <p> It is greatly appreciated.</p>
+      <div class="modal-actions">
+        <button type="button" class="modal-btn" id="thanksOkBtn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <form id="feedbackForm" class="container" autocomplete="on" novalidate>
+    <div class="logo-card section-space-40">
+      <img src="./assets/image/logo-blue.png" alt="logo" class="logo">
+    </div>
+
+    <div class="header">
+      <h2 class="section-space-5 mb-center-sm">Submit a Nomination</h2>
+      <p class="clr-black section-space-5 f-14 mb5 mb-center-sm">Let's celebrate the amazing people we work with.</div>
+
+  
+    <!-- Your info -->
+    <div class="card">
+      <h3 class="section-space-20 mb-center-sm ps-0">Your Information</h3>
+      <div class="toggle-container">
+        <div class="card" style="display: none;">
+          <div class="toggle-container">
+            <div class="inner-toggle">
+              <label for="anonymous">Remain Anonymous?</label>
+              <label class="switch">
+                <input type="checkbox" id="anonymous"  />
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+          <p class="info-text">Your feedback will be submitted anonymously.</p>
+        </div>
+<div class="toggle-form mb5" id="namedBlock">
+  <p class="mb5">Your Name</p>
+  <input type="text" id="username" class="mb5" name="username" placeholder="Please enter your name" />
+
+  <p class="mb5">Employee ID</p>
+  <input type="text" id="employeeId" name="employeeId" placeholder="Please enter your employee ID" />
+</div>
+      </div>
+    </div>
+    
+    <!-- Department -->
+     <div class="card">
+      <p for="departmentSelect" class="mb5 ps-2">Department</p>
+  <select id="departmentSelect">
+  <option value="">Select Department</option>
+</select>
+</div>
+
+
+  
+<div class="card">
+      <label for="departmentSelect" class="mb-5 ps-2">Nominee Name</label><br>
+<select id="managerSelect" style="margin-top:15px;">
+  <option value="">Select Nominee</option>
+</select>
+</div>
+
+
+    <!-- CHIP MANAGER CARD -->
+    <div class="card" id="manager-card">
+
+      <div class="toggle-container">
+        <div class="card">
+          <div class="toggle-container">
+            <div id="managerSection">
+              <div class="chip-container" id="managers"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="errorManager" class="error-message" style="display: none;">Please select a manager.</div>
+
+    <!-- CHIP RATINGS SECTION -->
+    <div class="card section-space-40" id="reviews-section">
+      <h3 class="section-space-5 mb-center-sm">Reason for Nomination</h3>
+     
+
+     <textarea
+            id="feedbackText"
+            name="feedback"
+            rows="10"
+            placeholder="Tell us why they deserve this recognition..."
+            style="width:100%; padding:10px;"
+          ></textarea>
+     
+
+        <!-- Section-specific error -->
+      <div id="errorChip" class="error-box" aria-live="polite"></div>
+
+    </div>
+
+    <!-- Global error box -->
+    <div id="errorGlobal" class="error-box" aria-live="polite"></div>
+    <!-- <div id="errorGlobaldpr" class="error-box" aria-live="polite">Please select the Department uhhhh</div>
+    <div id="errorGlobalmgr" class="error-box" aria-live="polite">Please select the Manager uhh</div> -->
+
+     <div id="spinner" class="spinner" style="display:none;"></div>
+    <div class="tqres" >
+      <strong>Feedback submitted successfully!</strong>
+    </div>
+    <!-- Submit -->
+    <button class="submit-btn" id="submitBtn" type="submit">Submit</button>
+   
+   
+  </form>
+   
+  
+  <div id="toast"></div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+
+if(localStorage.getItem("feedback_submitted")) {
+  document.querySelector("form").style.display = "none";
+document.body.innerHTML += '<p>✅ Your form is submitted alredy. Please reach out to <a style="text-decoration:none" href="mailto:hr@resulticks.com">test@test.com</a> for any queries.</p>';
+}
+  /* =======================
+     DOM
+  ======================= */
+  const form = document.getElementById("feedbackForm");
+
+  const anonToggle = document.getElementById("anonymous") || { checked: false };
+  const namedBlock = document.getElementById("namedBlock");
+  const usernameInput = document.getElementById("username");
+  const employeeIdInput = document.getElementById("employeeId");
+
+  const deptSelect = document.getElementById("departmentSelect");
+  const managerSelect = document.getElementById("managerSelect");
+
+  const reviewSection = document.getElementById("reviews-section");
+  const feedbackText = document.getElementById("feedbackText");
+
+  const errGlobal = document.getElementById("errorGlobal");
+
+  const spinner = document.getElementById("spinner");
+  const tqres =document.querySelector(".tqres");
+
+  /* =======================
+     DATA
+  ======================= */
+ const managersData = {
+    "Business Analyst": ["Farook N","Ragul V"],
+    "Campaign Management": ["Farook N","Karthikeyan Jayaram","Kishore D","Manigandan K"],
+    "Camstats": ["Ramesh V"],
+    "Cloud Infrastructure": ["Santhakumar M S"],
+    "Compliance": ["Mahesh D","Vandana Prabhakaran"],
+    "Creative": ["Selva Muthu Kumar C"],
+    "Customer Assist": ["Raghuram Sridharan","Ram Kumar P S"],
+    "Customer Success": ["Farook N","Sanjay Tarafdar"],
+    "Data Science": ["Mohamed Kani","Sankaranarayanan S","Shanthakumar V K C"],
+    "Database": ["Manikandan A","Sankaranarayanan S","Shanthakumar V K C"],
+    "DevOps": ["Santhakumar M S"],
+    "Dot Net": ["Balachandran S","Buvaneswaran P","Karthik E","Karthikeyan P","Muthukaruppan M","Narender S","Ramana Murthy","Retheesh V","Shanthakumar V K C"],
+    "Finance": ["Anbalagan Rangasamy","Shreya Gaunekar","Thirulokchand S"],
+    "Frontend": ["Farook N","Ziyaudeen Abbas Ali"],
+    "Human Resources": ["Keith Foster","Nazar Muhammed"],
+    "Implementation": ["Anurag Kumar P","Mahesh Sukumar","Neeraj R Pandey"],
+    "Inside Sales": ["Dhananjay Visvanath"],
+    "IT Support": ["Santhakumar M S"],
+    "Legal": ["Vandana Prabhakaran"],
+    "Market Research": ["Arpitha Shivkumar"],
+    "Marketing": ["Anuradha Sriraman","Dhananjay Visvanath","Nagesh K S","Sekhar Vidhya Sagar","Sneha Subramanian"],
+    "Mobile Application": ["Buvaneswaran P","Shanthakumar V K C"],
+    "Operations": ["Ramesh Vijayan"],
+    "Partner Portal": ["Balaji Sankara Saravanan V","Ramesh V"],
+    "Pre-Sales": ["Govind Sarawagi","Nagesh K S"],
+    "Python": ["Buvaneswaran P","Dinesh Babu M","Mahesh Sukumar","Mohamed Kani","Sankaranarayanan S"],
+    "QA": ["Arun Kumar J","Dinesh Babu J","Mahesh Anand Anton Alphonse","Samuel Ebinezer Y","Vimal Rajan V"],
+    "ReactJS": ["Arun Karthik C","Farook N","Ramana Murthy","Vennila M"],
+    "Sales - India": ["Dinesh Menon","Nagesh K S"],
+    "Sales - Operations": ["Dhananjay Visvanath","Sneha Subramanian"],
+    "Sales - SEA": ["Dhananjay Visvanath","Govind Sarawagi","Mahesh Sukumar"],
+    "Sales - USA": ["Akhil Mohan","Sneha Subramanian","Vandana Prabhakaran"],
+    "TRD": ["Balaji Sankara Saravanan V","Thanu K"],
+    "Vendor Integration - API": ["Dinesh Babu M","Muthukaruppan M"]
+};
+
+
+  /* =======================
+     HELPERS
+  ======================= */
+  function showError(msg) {
+    errGlobal.classList.add("show");
+    errGlobal.innerHTML = `<strong>${msg}</strong>`;
+  }
+
+  function clearError() {
+    errGlobal.classList.remove("show");
+    errGlobal.innerHTML = "";
+  }
+
+  function toggleNameBlock() {
+    namedBlock.style.display = anonToggle.checked ? "none" : "block";
+  }
+
+  toggleNameBlock();
+  anonToggle.addEventListener("change", toggleNameBlock);
+
+  /* =======================
+     POPULATE DEPARTMENTS
+  ======================= */
+  Object.keys(managersData).forEach(dept => {
+    const opt = document.createElement("option");
+    opt.value = dept;
+    opt.textContent = dept;
+    deptSelect.appendChild(opt);
+  });
+
+  /* =======================
+     DEPARTMENT → MANAGER
+  ======================= */
+  deptSelect.addEventListener("change", () => {
+    clearError();
+    managerSelect.innerHTML = `<option value="">Select Manager</option>`;
+    reviewSection.style.display = "block";
+
+    const dept = deptSelect.value;
+    if (!dept) {
+      managerSelect.style.display = "block";
+      return;
+    }
+
+    managersData[dept].forEach(mgr => {
+      const opt = document.createElement("option");
+      opt.value = mgr;
+      opt.textContent = mgr;
+      managerSelect.appendChild(opt);
+    });
+
+    managerSelect.style.display = "block";
+  });
+
+  /* =======================
+     MANAGER → TEXTAREA
+  ======================= */
+  managerSelect.addEventListener("change", () => {
+    clearError();
+    reviewSection.style.display = managerSelect.value ? "block" : "none";
+  });
+
+  /* =======================
+     SUBMIT
+  ======================= */
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    clearError();
+
+    const isAnonymous = anonToggle.checked;
+
+
+     if (!isAnonymous) {
+      if (!usernameInput.value.trim()) {
+        showError("Please enter your name or enable anonymous");
+        return;
+      }
+      if (!employeeIdInput.value.trim()) {
+        showError("Please enter your employee ID or enable anonymous");
+        return;
+      }
+    }
+
+    if (!deptSelect.value) {
+      showError("Please select a department");
+      return;
+    }
+
+    if (!managerSelect.value) {
+      showError("Please select a manager");
+      return;
+    }
+
+    if (!feedbackText.value.trim()) {
+      showError("Please enter the nominee");
+      return;
+    }
+
+   
+  spinner.style.display = "block";
+
+    /* FINAL PAYLOAD */
+    const payload = {
+      anonymous: isAnonymous,
+      username: isAnonymous ? "" : usernameInput.value.trim(),
+      employeeId: isAnonymous ? "" : employeeIdInput.value.trim(),
+      department: deptSelect.value,
+      manager: managerSelect.value,
+      feedback: feedbackText.value.trim(),
+      submittedAt: new Date().toISOString()
+    };
+
+    console.log("SUBMITTED:", payload);
+
+    //fetch("https://script.google.com/macros/s/AKfycbzL9XIJLVfUc3pvkg9ak4Y_tRNKi-i5RQuVudm7m-6RTHFboIPZrMq1YZXOdk4-scyA2Q/exec", {
+   
+
+    fetch("https://script.google.com/macros/s/AKfycbzny1HM6t2mBHItgHXuWPPeIyY_tKq08KlEuKFWz0WoKwm_dZ_q6v6buJ4VA6HtD7dVsg/exec", {
+  method: "POST",
+  body: JSON.stringify(payload)
+})
+.then(res => res.json())
+.then(data => {
+  console.log("Google Sheet response:", data);
+  spinner.style.display = "none";
+  tqres.style.display="block"
+  form.reset()
+   //localStorage.setItem("feedback_submitted", "true");
+  setTimeout(() => {
+      window.location.href = "https://www.resulticks.com/";
+    }, 2000);
+})
+.catch(err => {
+  console.error("Fetch error:", err);
+  // alert("❌ Failed to submit. Check console.");
+});
+
+
+
+    // alert("✅ Feedback submitted successfully");
+    // form.reset();
+    // toggleNameBlock();
+    // managerSelect.style.display = "none";
+    // reviewSection.style.display = "none";
+  });
+
+});
+</script>
+
+
+ 
+</body>
+</html>

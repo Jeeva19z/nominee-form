@@ -1,0 +1,57 @@
+<label><input type="checkbox" class="manager" value="Akhil Mohan"> Akhil Mohan</label>
+  <!-- <label><input type="checkbox" class="manager" value="Anbalagan Rangasamy"> Anbalagan Rangasamy</label> -->
+  <label><input type="checkbox" class="manager" value="Anuradha Sriraman"> Anuradha Sriraman</label>
+  <label><input type="checkbox" class="manager" value="Anurag Kumar P"> Anurag Kumar P</label>
+  <!-- <label><input type="checkbox" class="manager" value="Arpitha Shivkumar"> Arpitha Shivkumar</label> -->
+  <!-- <label><input type="checkbox" class="manager" value="Arun Karthik C"> Arun Karthik C</label> -->
+  <!-- <label><input type="checkbox" class="manager" value="Arun Kumar J"> Arun Kumar J</label> -->
+  <!-- <label><input type="checkbox" class="manager" value="Balachandran S"> Balachandran S</label> -->
+  <label><input type="checkbox" class="manager" value="Balaji Sankara Saravanan V"> Balaji Sankara Saravanan V</label>
+  <label><input type="checkbox" class="manager" value="Buvaneswaran P"> Buvaneswaran P</label>
+  <label><input type="checkbox" class="manager" value="Dhananjay Visvanath"> Dhananjay Visvanath</label>
+  <!-- <label><input type="checkbox" class="manager" value="Dinesh Babu J"> Dinesh Babu J</label> -->
+  <!-- <label><input type="checkbox" class="manager" value="Dinesh Babu M"> Dinesh Babu M</label> -->
+  <label><input type="checkbox" class="manager" value="Dinesh Menon"> Dinesh Menon</label>
+  <label><input type="checkbox" class="manager" value="Farook N"> Farook N</label>
+  <label><input type="checkbox" class="manager" value="Govind Sarawagi"> Govind Sarawagi</label>
+  <!-- <label><input type="checkbox" class="manager" value="Karthik E"> Karthik E</label> -->
+  <!-- <label><input type="checkbox" class="manager" value="Karthikeyan Jayaram"> Karthikeyan Jayaram</label> -->
+  <!-- <label><input type="checkbox" class="manager" value="Karthikeyan P"> Karthikeyan P</label> -->
+  <label><input type="checkbox" class="manager" value="Keith Foster"> Keith Foster</label>
+  <!-- <label><input type="checkbox" class="manager" value="Kishore D"> Kishore D</label> -->
+  <label><input type="checkbox" class="manager" value="Mahesh Anand Anton Alphonse"> Mahesh Anand Anton Alphonse</label>
+  <!-- <label><input type="checkbox" class="manager" value="Mahesh D"> Mahesh D</label> -->
+  <label><input type="checkbox" class="manager" value="Mahesh Sukumar"> Mahesh Sukumar</label>
+  <!-- <label><input type="checkbox" class="manager" value="Manigandan K"> Manigandan K</label> -->
+  <!-- <label><input type="checkbox" class="manager" value="Manikandan A"> Manikandan A</label> -->
+  <!-- <label><input type="checkbox" class="manager" value="Mohamed Kani"> Mohamed Kani</label> -->
+  <!-- <label><input type="checkbox" class="manager" value="Muthukaruppan M"> Muthukaruppan M</label> -->
+  <label><input type="checkbox" class="manager" value="Nagesh K S"> Nagesh K S</label>
+  <!-- <label><input type="checkbox" class="manager" value="Narender S"> Narender S</label> -->
+  <!-- <label><input type="checkbox" class="manager" value="Narendar K-CA"> Narendar K-CA</label> -->
+  <label><input type="checkbox" class="manager" value="Nazar Muhammed"> Nazar Muhammed</label>
+  <!-- <label><input type="checkbox" class="manager" value="Neeraj R Pandey"> Neeraj R Pandey</label> -->
+  <label><input type="checkbox" class="manager" value="Raghuram Sridharan"> Raghuram Sridharan</label>
+  <!-- <label><input type="checkbox" class="manager" value="Ragul V"> Ragul V</label> -->
+  <label><input type="checkbox" class="manager" value="Ram Kumar P S"> Ram Kumar P S</label>
+  <!-- <label><input type="checkbox" class="manager" value="Ramana Murthy"> Ramana Murthy</label> -->
+  <!-- <label><input type="checkbox" class="manager" value="Ramesh V"> Ramesh V</label> -->
+  <label><input type="checkbox" class="manager" value="Ramesh Vijayan"> Ramesh Vijayan</label>
+  <label><input type="checkbox" class="manager" value="Retheesh V"> Retheesh V</label>
+  <!-- <label><input type="checkbox" class="manager" value="Samuel Ebinezer Y"> Samuel Ebinezer Y</label> -->
+  <!-- <label><input type="checkbox" class="manager" value="Sanjay Tarafdar"> Sanjay Tarafdar</label> -->
+  <label><input type="checkbox" class="manager" value="Sankaranarayanan S"> Sankaranarayanan S</label>
+  <label><input type="checkbox" class="manager" value="Santhakumar M S"> Santhakumar M S</label>
+  <!-- <label><input type="checkbox" class="manager" value="Senthilnathan S"> Senthilnathan S</label> -->
+  <!-- <label><input type="checkbox" class="manager" value="Sekhar Vidhya Sagar"> Sekhar Vidhya Sagar</label> -->
+  <label><input type="checkbox" class="manager" value="Selva Muthu Kumar C"> Selva Muthu Kumar C</label>
+  <label><input type="checkbox" class="manager" value="Shanthakumar V K C"> Shanthakumar VKC</label>
+  <label><input type="checkbox" class="manager" value="Shreya Gaunekar"> Shreya Gaunekar</label>
+  <label><input type="checkbox" class="manager" value="Sneha Subramanian"> Sneha Subramanian</label>
+  <!-- <label><input type="checkbox" class="manager" value="Thanu K"> Thanu K</label> -->
+  <!-- <label><input type="checkbox" class="manager" value="Thirulokchand S"> Thirulokchand S</label> -->
+  <label><input type="checkbox" class="manager" value="Vandana Prabhakaran"> Vandana Prabhakaran</label>
+  <!-- <label><input type="checkbox" class="manager" value="Vennila M"> Vennila M</label> -->
+  <!-- <label><input type="checkbox" class="manager" value="Vimal Rajan V"> Vimal Rajan V</label> -->
+  <!-- <label><input type="checkbox" class="manager" value="Ziyaudeen Abbas Ali"> Ziyaudeen Abbas Ali</label> -->
+  
