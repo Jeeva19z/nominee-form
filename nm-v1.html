@@ -351,7 +351,7 @@ h3.section-space-5.mb-center-sm {
         <div class="card" style="display: none;">
           <div class="toggle-container">
             <div class="inner-toggle">
-              <label for="anonymous">Remain Anonymous?</label>
+              <label for="anonymous">.</label>
               <label class="switch">
                 <input type="checkbox" id="anonymous"  />
                 <span class="slider"></span>
@@ -546,7 +546,7 @@ document.body.innerHTML += '<p>✅ You have already submitted this form. Thank y
   ======================= */
   deptSelect.addEventListener("change", () => {
     clearError();
-    managerSelect.innerHTML = `<option value="">Select Manager</option>`;
+    managerSelect.innerHTML = `<option value="">Select Nominee</option>`;
     reviewSection.style.display = "block";
 
     const dept = deptSelect.value;
