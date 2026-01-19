@@ -358,14 +358,14 @@ h3.section-space-5.mb-center-sm {
               </label>
             </div>
           </div>
-          <p class="info-text">Your feedback will be submitted anonymously.</p>
+          <p class="info-text"></p>
         </div>
 <div class="toggle-form mb5" id="namedBlock">
   <p class="mb5">Your Name</p>
   <input type="text" id="username" class="mb5" name="username" placeholder="Please enter your name" />
 
-  <p class="mb5">Employee ID</p>
-  <input type="text" id="employeeId" name="employeeId" placeholder="Please enter your employee ID" />
+  <!-- <p class="mb5">Employee ID</p> -->
+  <!-- <input type="text" id="employeeId" name="employeeId" placeholder="Please enter your employee ID" /> -->
 </div>
       </div>
     </div>
@@ -430,7 +430,7 @@ h3.section-space-5.mb-center-sm {
 
      <div id="spinner" class="spinner" style="display:none;"></div>
     <div class="tqres" >
-      <strong>Feedback submitted successfully!</strong>
+      <strong>Thank you! Your nomination has been submitted successfully.</strong>
     </div>
     <!-- Submit -->
     <button class="submit-btn" id="submitBtn" type="submit">Submit</button>
@@ -447,7 +447,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 if(localStorage.getItem("feedback_submitted")) {
   document.querySelector("form").style.display = "none";
-document.body.innerHTML += '<p>✅ Your form is submitted alredy. Please reach out to <a style="text-decoration:none" href="mailto:hr@resulticks.com">test@test.com</a> for any queries.</p>';
+document.body.innerHTML += '<p>✅ You have already submitted this form. Thank you.</p>';
 }
   /* =======================
      DOM
@@ -457,7 +457,7 @@ document.body.innerHTML += '<p>✅ Your form is submitted alredy. Please reach o
   const anonToggle = document.getElementById("anonymous") || { checked: false };
   const namedBlock = document.getElementById("namedBlock");
   const usernameInput = document.getElementById("username");
-  const employeeIdInput = document.getElementById("employeeId");
+  // const employeeIdInput = document.getElementById("employeeId");
 
   const deptSelect = document.getElementById("departmentSelect");
   const managerSelect = document.getElementById("managerSelect");
@@ -585,13 +585,13 @@ document.body.innerHTML += '<p>✅ Your form is submitted alredy. Please reach o
 
      if (!isAnonymous) {
       if (!usernameInput.value.trim()) {
-        showError("Please enter your name or enable anonymous");
+        showError("Please enter your name");
         return;
       }
-      if (!employeeIdInput.value.trim()) {
-        showError("Please enter your employee ID or enable anonymous");
-        return;
-      }
+      // if (!employeeIdInput.value.trim()) {
+      //   showError("Please enter your employee ID");
+      //   return;
+      // }
     }
 
     if (!deptSelect.value) {
@@ -605,7 +605,7 @@ document.body.innerHTML += '<p>✅ Your form is submitted alredy. Please reach o
     }
 
     if (!feedbackText.value.trim()) {
-      showError("Please enter the nominee");
+      showError("Please enter the reason for nomination");
       return;
     }
 
@@ -616,7 +616,7 @@ document.body.innerHTML += '<p>✅ Your form is submitted alredy. Please reach o
     const payload = {
       anonymous: isAnonymous,
       username: isAnonymous ? "" : usernameInput.value.trim(),
-      employeeId: isAnonymous ? "" : employeeIdInput.value.trim(),
+      employeeId: "",
       department: deptSelect.value,
       manager: managerSelect.value,
       feedback: feedbackText.value.trim(),
@@ -638,10 +638,10 @@ document.body.innerHTML += '<p>✅ Your form is submitted alredy. Please reach o
   spinner.style.display = "none";
   tqres.style.display="block"
   form.reset()
-   //localStorage.setItem("feedback_submitted", "true");
+   localStorage.setItem("feedback_submitted", "true");
   setTimeout(() => {
       window.location.href = "https://www.resulticks.com/";
-    }, 2000);
+    }, 2500);
 })
 .catch(err => {
   console.error("Fetch error:", err);
