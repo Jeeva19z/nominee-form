@@ -402,7 +402,7 @@ h3.section-space-5.mb-center-sm {
       </div>
     </div>
     
-    <div id="errorManager" class="error-message" style="display: none;">Please select a Nominee.</div>
+    <div id="errorManager" class="error-message" style="display: none;">Please select a nominee.</div>
 
     <!-- CHIP RATINGS SECTION -->
     <div class="card section-space-40" id="reviews-section">
@@ -447,7 +447,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 if(localStorage.getItem("feedback_submitted")) {
   document.querySelector("form").style.display = "none";
-document.body.innerHTML += '<p>✅ You have already submitted this form. Thank you.</p>';
+document.body.innerHTML += '<p style="display: flex;align-items: center;justify-content: center; height: 90vh;text-align: center;font-size: 22px;">✅ You have already submitted this form. Thank you.</p>';
 }
   /* =======================
      DOM
@@ -600,7 +600,7 @@ document.body.innerHTML += '<p>✅ You have already submitted this form. Thank y
     }
 
     if (!managerSelect.value) {
-      showError("Please select a manager");
+      showError("Please select a nominee");
       return;
     }
 
